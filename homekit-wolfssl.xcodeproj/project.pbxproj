@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		915049A51F06CC8300E64078 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 915049A41F06CC8300E64078 /* main.cpp */; };
+		915049AD1F06CD5400E64078 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 915049AC1F06CD5400E64078 /* test.cpp */; };
+		915049B01F06CDE600E64078 /* HAPController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 915049AE1F06CDE600E64078 /* HAPController.cpp */; };
+		915049B31F06CF5D00E64078 /* srp.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049B21F06CF5D00E64078 /* srp.c */; };
+		915049B91F06D1CE00E64078 /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049B81F06D1CE00E64078 /* misc.c */; };
+		915049BD1F06D28600E64078 /* wc_port.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049BB1F06D28600E64078 /* wc_port.c */; };
+		915049C01F06D2EA00E64078 /* sha.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049BE1F06D2EA00E64078 /* sha.c */; };
+		915049C31F06D37B00E64078 /* sha512.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049C11F06D37B00E64078 /* sha512.c */; };
+		915049C61F06D40B00E64078 /* sha256.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049C41F06D40B00E64078 /* sha256.c */; };
+		915049C91F06D4A000E64078 /* integer.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049C71F06D4A000E64078 /* integer.c */; };
+		915049CD1F06D5F200E64078 /* memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049CB1F06D5F200E64078 /* memory.c */; };
+		915049D01F06D67600E64078 /* logging.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049CE1F06D67600E64078 /* logging.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +34,35 @@
 
 /* Begin PBXFileReference section */
 		915049A11F06CC8200E64078 /* homekit-wolfssl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "homekit-wolfssl"; sourceTree = BUILT_PRODUCTS_DIR; };
-		915049A41F06CC8300E64078 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		915049AC1F06CD5400E64078 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		915049AE1F06CDE600E64078 /* HAPController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HAPController.cpp; sourceTree = "<group>"; };
+		915049AF1F06CDE600E64078 /* HAPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPController.h; sourceTree = "<group>"; };
+		915049B11F06CF2E00E64078 /* srp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = srp.h; sourceTree = "<group>"; };
+		915049B21F06CF5D00E64078 /* srp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = srp.c; sourceTree = "<group>"; };
+		915049B41F06D09600E64078 /* settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = settings.h; sourceTree = "<group>"; };
+		915049B51F06D0EF00E64078 /* random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
+		915049B61F06D13100E64078 /* error-crypt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "error-crypt.h"; sourceTree = "<group>"; };
+		915049B71F06D17200E64078 /* misc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
+		915049B81F06D1CE00E64078 /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
+		915049BA1F06D23700E64078 /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		915049BB1F06D28600E64078 /* wc_port.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wc_port.c; sourceTree = "<group>"; };
+		915049BC1F06D28600E64078 /* wc_port.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wc_port.h; sourceTree = "<group>"; };
+		915049BE1F06D2EA00E64078 /* sha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha.c; sourceTree = "<group>"; };
+		915049BF1F06D2EA00E64078 /* sha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha.h; sourceTree = "<group>"; };
+		915049C11F06D37B00E64078 /* sha512.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha512.c; sourceTree = "<group>"; };
+		915049C21F06D37B00E64078 /* sha512.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha512.h; sourceTree = "<group>"; };
+		915049C41F06D40B00E64078 /* sha256.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha256.c; sourceTree = "<group>"; };
+		915049C51F06D40B00E64078 /* sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha256.h; sourceTree = "<group>"; };
+		915049C71F06D4A000E64078 /* integer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = integer.c; sourceTree = "<group>"; };
+		915049C81F06D4A000E64078 /* integer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = integer.h; sourceTree = "<group>"; };
+		915049CA1F06D57C00E64078 /* visibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = visibility.h; sourceTree = "<group>"; };
+		915049CB1F06D5F200E64078 /* memory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = memory.c; sourceTree = "<group>"; };
+		915049CC1F06D5F200E64078 /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
+		915049CE1F06D67600E64078 /* logging.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = logging.c; sourceTree = "<group>"; };
+		915049CF1F06D67600E64078 /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
+		915049D11F06D7B300E64078 /* mpi_class.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mpi_class.h; sourceTree = "<group>"; };
+		915049D21F06D7F700E64078 /* mpi_superclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mpi_superclass.h; sourceTree = "<group>"; };
+		915049D31F06D83000E64078 /* wolfmath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wolfmath.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +79,8 @@
 		915049981F06CC8200E64078 = {
 			isa = PBXGroup;
 			children = (
-				915049A31F06CC8200E64078 /* homekit-wolfssl */,
+				915049AB1F06CD5400E64078 /* src */,
+				915049AC1F06CD5400E64078 /* test.cpp */,
 				915049A21F06CC8200E64078 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +93,39 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		915049A31F06CC8200E64078 /* homekit-wolfssl */ = {
+		915049AB1F06CD5400E64078 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				915049A41F06CC8300E64078 /* main.cpp */,
+				915049AE1F06CDE600E64078 /* HAPController.cpp */,
+				915049AF1F06CDE600E64078 /* HAPController.h */,
+				915049B11F06CF2E00E64078 /* srp.h */,
+				915049B21F06CF5D00E64078 /* srp.c */,
+				915049B41F06D09600E64078 /* settings.h */,
+				915049CA1F06D57C00E64078 /* visibility.h */,
+				915049B51F06D0EF00E64078 /* random.h */,
+				915049B61F06D13100E64078 /* error-crypt.h */,
+				915049B71F06D17200E64078 /* misc.h */,
+				915049B81F06D1CE00E64078 /* misc.c */,
+				915049BA1F06D23700E64078 /* types.h */,
+				915049BB1F06D28600E64078 /* wc_port.c */,
+				915049BC1F06D28600E64078 /* wc_port.h */,
+				915049BE1F06D2EA00E64078 /* sha.c */,
+				915049BF1F06D2EA00E64078 /* sha.h */,
+				915049C41F06D40B00E64078 /* sha256.c */,
+				915049C51F06D40B00E64078 /* sha256.h */,
+				915049C11F06D37B00E64078 /* sha512.c */,
+				915049C21F06D37B00E64078 /* sha512.h */,
+				915049C71F06D4A000E64078 /* integer.c */,
+				915049C81F06D4A000E64078 /* integer.h */,
+				915049D11F06D7B300E64078 /* mpi_class.h */,
+				915049D21F06D7F700E64078 /* mpi_superclass.h */,
+				915049D31F06D83000E64078 /* wolfmath.h */,
+				915049CB1F06D5F200E64078 /* memory.c */,
+				915049CC1F06D5F200E64078 /* memory.h */,
+				915049CE1F06D67600E64078 /* logging.c */,
+				915049CF1F06D67600E64078 /* logging.h */,
 			);
-			path = "homekit-wolfssl";
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,7 +186,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				915049A51F06CC8300E64078 /* main.cpp in Sources */,
+				915049C01F06D2EA00E64078 /* sha.c in Sources */,
+				915049B31F06CF5D00E64078 /* srp.c in Sources */,
+				915049CD1F06D5F200E64078 /* memory.c in Sources */,
+				915049C61F06D40B00E64078 /* sha256.c in Sources */,
+				915049AD1F06CD5400E64078 /* test.cpp in Sources */,
+				915049B01F06CDE600E64078 /* HAPController.cpp in Sources */,
+				915049D01F06D67600E64078 /* logging.c in Sources */,
+				915049C31F06D37B00E64078 /* sha512.c in Sources */,
+				915049B91F06D1CE00E64078 /* misc.c in Sources */,
+				915049BD1F06D28600E64078 /* wc_port.c in Sources */,
+				915049C91F06D4A000E64078 /* integer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
