@@ -19,6 +19,8 @@
 		915049CD1F06D5F200E64078 /* memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049CB1F06D5F200E64078 /* memory.c */; };
 		915049D01F06D67600E64078 /* logging.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049CE1F06D67600E64078 /* logging.c */; };
 		915049D71F07211600E64078 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049D61F07211600E64078 /* random.c */; };
+		915049DA1F073FC600E64078 /* chacha20_poly1305.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049D81F073FC600E64078 /* chacha20_poly1305.c */; };
+		915049DD1F07409E00E64078 /* ed25519.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049DB1F07409E00E64078 /* ed25519.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +68,10 @@
 		915049D31F06D83000E64078 /* wolfmath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wolfmath.h; sourceTree = "<group>"; };
 		915049D51F071EFB00E64078 /* user_settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = user_settings.h; sourceTree = "<group>"; };
 		915049D61F07211600E64078 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = random.c; sourceTree = "<group>"; };
+		915049D81F073FC600E64078 /* chacha20_poly1305.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chacha20_poly1305.c; sourceTree = "<group>"; };
+		915049D91F073FC600E64078 /* chacha20_poly1305.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chacha20_poly1305.h; sourceTree = "<group>"; };
+		915049DB1F07409E00E64078 /* ed25519.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ed25519.c; sourceTree = "<group>"; };
+		915049DC1F07409E00E64078 /* ed25519.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ed25519.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +143,10 @@
 				915049CC1F06D5F200E64078 /* memory.h */,
 				915049CE1F06D67600E64078 /* logging.c */,
 				915049CF1F06D67600E64078 /* logging.h */,
+				915049D81F073FC600E64078 /* chacha20_poly1305.c */,
+				915049D91F073FC600E64078 /* chacha20_poly1305.h */,
+				915049DB1F07409E00E64078 /* ed25519.c */,
+				915049DC1F07409E00E64078 /* ed25519.h */,
 			);
 			name = WolfSSL;
 			sourceTree = "<group>";
@@ -204,7 +214,9 @@
 				915049CD1F06D5F200E64078 /* memory.c in Sources */,
 				915049C61F06D40B00E64078 /* sha256.c in Sources */,
 				915049AD1F06CD5400E64078 /* test.cpp in Sources */,
+				915049DA1F073FC600E64078 /* chacha20_poly1305.c in Sources */,
 				915049B01F06CDE600E64078 /* HAPController.cpp in Sources */,
+				915049DD1F07409E00E64078 /* ed25519.c in Sources */,
 				915049D01F06D67600E64078 /* logging.c in Sources */,
 				915049C31F06D37B00E64078 /* sha512.c in Sources */,
 				915049B91F06D1CE00E64078 /* misc.c in Sources */,

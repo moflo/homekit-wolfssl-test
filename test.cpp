@@ -423,7 +423,152 @@ int main()
             assertNotEqual(compareB, 0, "byte comparison failed", &error_count);
 
         }
+        {
+#ifdef HAVE_ED25519
+            static INLINE int myEd25519Sign(WOLFSSL* ssl, const byte* in, word32 inSz,
+                                            byte* out, word32* outSz, const byte* key, word32 keySz, void* ctx)
+            {
+                int         ret;
+                word32      idx = 0;
+                ed25519_key myKey;
+                
+                
+                ret = wc_ed25519_init(&myKey);
+                if (ret == 0) {
+                    ret = wc_Ed25519PrivateKeyDecode(key, &idx, &myKey, keySz);
+                    if (ret == 0)
+                        ret = wc_ed25519_sign_msg(in, inSz, out, outSz, &myKey);
+                    wc_ed25519_free(&myKey);
+                }
+                
+                return ret;
+            }
+            
+            
+            static INLINE int myEd25519Verify(WOLFSSL* ssl, const byte* sig, word32 sigSz,
+                                              const byte* msg, word32 msgSz, const byte* key, word32 keySz,
+                                              int* result, void* ctx)
+            {
+                int         ret;
+                ed25519_key myKey;
+                
+                (void)ssl;
+                (void)ctx;
+                
+                ret = wc_ed25519_init(&myKey);
+                if (ret == 0) {
+                    ret = wc_ed25519_import_public(key, keySz, &myKey);
+                    if (ret == 0) {
+                        ret = wc_ed25519_verify_msg(sig, sigSz, msg, msgSz, result, &myKey);
+                    }
+                    wc_ed25519_free(&myKey);
+                }
+                
+                return ret;
+            }
+#endif /* HAVE_ED25519 */
 
+        }
+        {
+#if defined(HAVE_SESSION_TICKET) && defined(HAVE_CHACHA) && \
+defined(HAVE_POLY1305)
+            
+#include <wolfssl/wolfcrypt/chacha20_poly1305.h>
+            
+            typedef struct key_ctx {
+                byte name[WOLFSSL_TICKET_NAME_SZ];        /* name for this context */
+                byte key[CHACHA20_POLY1305_AEAD_KEYSIZE]; /* cipher key */
+            } key_ctx;
+            
+            static key_ctx myKey_ctx;
+            static WC_RNG myKey_rng;
+            
+            static INLINE int TicketInit(void)
+            {
+                int ret = wc_InitRng(&myKey_rng);
+                if (ret != 0) return ret;
+                
+                ret = wc_RNG_GenerateBlock(&myKey_rng, myKey_ctx.key, sizeof(myKey_ctx.key));
+                if (ret != 0) return ret;
+                
+                ret = wc_RNG_GenerateBlock(&myKey_rng, myKey_ctx.name,sizeof(myKey_ctx.name));
+                if (ret != 0) return ret;
+                
+                return 0;
+            }
+            
+            static INLINE void TicketCleanup(void)
+            {
+                wc_FreeRng(&myKey_rng);
+            }
+            
+            static INLINE int myTicketEncCb(WOLFSSL* ssl,
+                                            byte key_name[WOLFSSL_TICKET_NAME_SZ],
+                                            byte iv[WOLFSSL_TICKET_IV_SZ],
+                                            byte mac[WOLFSSL_TICKET_MAC_SZ],
+                                            int enc, byte* ticket, int inLen, int* outLen,
+                                            void* userCtx)
+            {
+                (void)ssl;
+                (void)userCtx;
+                
+                int ret;
+                word16 sLen = XHTONS(inLen);
+                byte aad[WOLFSSL_TICKET_NAME_SZ + WOLFSSL_TICKET_IV_SZ + 2];
+                int  aadSz = WOLFSSL_TICKET_NAME_SZ + WOLFSSL_TICKET_IV_SZ + 2;
+                byte* tmp = aad;
+                
+                if (enc) {
+                    XMEMCPY(key_name, myKey_ctx.name, WOLFSSL_TICKET_NAME_SZ);
+                    
+                    ret = wc_RNG_GenerateBlock(&myKey_rng, iv, WOLFSSL_TICKET_IV_SZ);
+                    if (ret != 0) return WOLFSSL_TICKET_RET_REJECT;
+                    
+                    /* build aad from key name, iv, and length */
+                    XMEMCPY(tmp, key_name, WOLFSSL_TICKET_NAME_SZ);
+                    tmp += WOLFSSL_TICKET_NAME_SZ;
+                    XMEMCPY(tmp, iv, WOLFSSL_TICKET_IV_SZ);
+                    tmp += WOLFSSL_TICKET_IV_SZ;
+                    XMEMCPY(tmp, &sLen, 2);
+                    
+                    ret = wc_ChaCha20Poly1305_Encrypt(myKey_ctx.key, iv,
+                                                      aad, aadSz,
+                                                      ticket, inLen,
+                                                      ticket,
+                                                      mac);
+                    if (ret != 0) return WOLFSSL_TICKET_RET_REJECT;
+                    *outLen = inLen;  /* no padding in this mode */
+                } else {
+                    /* decrypt */
+                    
+                    /* see if we know this key */
+                    if (XMEMCMP(key_name, myKey_ctx.name, WOLFSSL_TICKET_NAME_SZ) != 0){
+                        printf("client presented unknown ticket key name ");
+                        return WOLFSSL_TICKET_RET_FATAL;
+                    }
+                    
+                    /* build aad from key name, iv, and length */
+                    XMEMCPY(tmp, key_name, WOLFSSL_TICKET_NAME_SZ);
+                    tmp += WOLFSSL_TICKET_NAME_SZ;
+                    XMEMCPY(tmp, iv, WOLFSSL_TICKET_IV_SZ);
+                    tmp += WOLFSSL_TICKET_IV_SZ;
+                    XMEMCPY(tmp, &sLen, 2);
+                    
+                    ret = wc_ChaCha20Poly1305_Decrypt(myKey_ctx.key, iv,
+                                                      aad, aadSz,
+                                                      ticket, inLen,
+                                                      mac,
+                                                      ticket);
+                    if (ret != 0) return WOLFSSL_TICKET_RET_REJECT;
+                    *outLen = inLen;  /* no padding in this mode */
+                }
+                
+                return WOLFSSL_TICKET_RET_OK;
+            }
+            
+#endif  /* HAVE_SESSION_TICKET && CHACHA20 && POLY1305 */
+            
+        }
         
         cout << "\n\nError count == " << error_count << endl;
         
