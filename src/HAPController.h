@@ -18,9 +18,11 @@
 #include "srp.h"
 
 
-int getChallenge(uint8_t **salt,uint16_t *salt_len, uint8_t **key, uint16_t *key_len);
+int getChallenge(uint8_t **salt,uint32_t *salt_len, uint8_t **key, uint32_t *key_len);
 
-int verifySession(uint8_t **serverKeyProof, uint16_t *proof_len, uint8_t *clientPublicKey, uint16_t client_key_len, uint8_t *clientKeyProof, uint16_t client_proof_len);
+int verifySession(uint8_t **serverKeyProof, uint16_t *proof_len,
+                  uint8_t *clientPublicKey, uint16_t client_key_len,
+                  uint8_t *serverPublicKey, uint16_t server_key_len);
 
 
 #endif /* HAPController_hpp */
