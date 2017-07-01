@@ -20,9 +20,6 @@
 
 using namespace std;
 
-#define IPHONE	/* Needed for Xcode */
-#define HAVE_HASHDRBG
-#define HAVE_AESGCM
 #define WOLFSSL_SHA512
 #define WOLFCRYPT_HAVE_SRP
 
@@ -48,6 +45,27 @@ void assertNotEqual(uint8_t mem1, uint8_t mem2, const char * description, int * 
     }
 }
 
+/* for async devices */
+static int devId = INVALID_DEVID;
+
+static int generate_random_salt(byte *buf, word32 size)
+{
+    int ret = -5821;
+    WC_RNG rng;
+    
+    if(NULL == buf || !size)
+        return -5822;
+    
+    if (buf && size && wc_InitRng_ex(&rng, NULL, devId) == 0) {
+        ret = wc_RNG_GenerateBlock(&rng, (byte *)buf, size);
+        
+        wc_FreeRng(&rng);
+    }
+    
+    return ret;
+}
+
+
 int main()
 {
     cout << "Starting Test.cpp ...\n\n" << endl;
@@ -60,14 +78,183 @@ int main()
             
             Srp srp;
             
-            wc_SrpInit(&srp, SRP_TYPE_SHA512, SRP_CLIENT_SIDE);
-//
-//            wc_SrpTerm(&srp);
+            wc_SrpInit(&srp, SRP_TYPE_SHA512, SRP_SERVER_SIDE);
+
+            wc_SrpTerm(&srp);
             
 
         }
         {
-            cout << "Initialize - compute v test ..." << endl;
+            cout << "WolfSSL test - SHA512 ..." << endl;
+            
+            Sha512 sha;
+            byte   hash[SHA512_DIGEST_SIZE];
+            byte   hashcopy[SHA512_DIGEST_SIZE];
+            int    ret;
+
+            typedef struct testVector {
+                const char*  input;
+                const char*  output;
+                size_t inLen;
+                size_t outLen;
+            } testVector;
+
+            testVector a, b;
+            testVector test_sha[2];
+            int times = sizeof(test_sha) / sizeof(struct testVector), i;
+            
+            a.input  = "abc";
+            a.output = "\xdd\xaf\x35\xa1\x93\x61\x7a\xba\xcc\x41\x73\x49\xae\x20\x41"
+            "\x31\x12\xe6\xfa\x4e\x89\xa9\x7e\xa2\x0a\x9e\xee\xe6\x4b\x55"
+            "\xd3\x9a\x21\x92\x99\x2a\x27\x4f\xc1\xa8\x36\xba\x3c\x23\xa3"
+            "\xfe\xeb\xbd\x45\x4d\x44\x23\x64\x3c\xe8\x0e\x2a\x9a\xc9\x4f"
+            "\xa5\x4c\xa4\x9f";
+            a.inLen  = XSTRLEN(a.input);
+            a.outLen = SHA512_DIGEST_SIZE;
+            
+            b.input  = "abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhi"
+            "jklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu";
+            b.output = "\x8e\x95\x9b\x75\xda\xe3\x13\xda\x8c\xf4\xf7\x28\x14\xfc\x14"
+            "\x3f\x8f\x77\x79\xc6\xeb\x9f\x7f\xa1\x72\x99\xae\xad\xb6\x88"
+            "\x90\x18\x50\x1d\x28\x9e\x49\x00\xf7\xe4\x33\x1b\x99\xde\xc4"
+            "\xb5\x43\x3a\xc7\xd3\x29\xee\xb6\xdd\x26\x54\x5e\x96\xe5\x5b"
+            "\x87\x4b\xe9\x09";
+            b.inLen  = XSTRLEN(b.input);
+            b.outLen = SHA512_DIGEST_SIZE;
+            
+            test_sha[0] = a;
+            test_sha[1] = b;
+
+
+            ret = wc_InitSha512_ex(&sha, NULL, devId);
+            if (ret != 0)
+                return -2200;
+            
+            for (i = 0; i < times; ++i) {
+                ret = wc_Sha512Update(&sha, (byte*)test_sha[i].input,(word32)test_sha[i].inLen);
+                if (ret != 0)
+                    return -2210 - i;
+                ret = wc_Sha512GetHash(&sha, hashcopy);
+                if (ret != 0)
+                    return -2220 - i;
+                ret = wc_Sha512Final(&sha, hash);
+                if (ret != 0)
+                    return -2230 - i;
+                
+                if (XMEMCMP(hash, test_sha[i].output, SHA512_DIGEST_SIZE) != 0)
+                    return -2240 - i;
+                if (XMEMCMP(hash, hashcopy, SHA512_DIGEST_SIZE) != 0)
+                    return -2250 - i;
+            }
+            
+            wc_Sha512Free(&sha);
+            
+            assertNotEqual(ret, 0, "SHA512 test failed - code ", &error_count);
+
+        }
+        
+        {
+
+            cout << "WolfSSL test - SRP ..." << endl;
+
+            Srp cli, srv;
+            int r;
+            
+            byte clientPubKey[80]; /* A */
+            byte serverPubKey[80]; /* B */
+            word32 clientPubKeySz = 80;
+            word32 serverPubKeySz = 80;
+            byte clientProof[SRP_MAX_DIGEST_SIZE]; /* M1 */
+            byte serverProof[SRP_MAX_DIGEST_SIZE]; /* M2 */
+            word32 clientProofSz = SRP_MAX_DIGEST_SIZE;
+            word32 serverProofSz = SRP_MAX_DIGEST_SIZE;
+            
+            byte username[] = "user";
+            word32 usernameSz = 4;
+            
+            byte password[] = "password";
+            word32 passwordSz = 8;
+            
+            byte N[] = {
+                0xC9, 0x4D, 0x67, 0xEB, 0x5B, 0x1A, 0x23, 0x46, 0xE8, 0xAB, 0x42, 0x2F,
+                0xC6, 0xA0, 0xED, 0xAE, 0xDA, 0x8C, 0x7F, 0x89, 0x4C, 0x9E, 0xEE, 0xC4,
+                0x2F, 0x9E, 0xD2, 0x50, 0xFD, 0x7F, 0x00, 0x46, 0xE5, 0xAF, 0x2C, 0xF7,
+                0x3D, 0x6B, 0x2F, 0xA2, 0x6B, 0xB0, 0x80, 0x33, 0xDA, 0x4D, 0xE3, 0x22,
+                0xE1, 0x44, 0xE7, 0xA8, 0xE9, 0xB1, 0x2A, 0x0E, 0x46, 0x37, 0xF6, 0x37,
+                0x1F, 0x34, 0xA2, 0x07, 0x1C, 0x4B, 0x38, 0x36, 0xCB, 0xEE, 0xAB, 0x15,
+                0x03, 0x44, 0x60, 0xFA, 0xA7, 0xAD, 0xF4, 0x83
+            };
+            
+            byte g[] = {
+                0x02
+            };
+            
+            byte salt[10];
+            
+            byte verifier[80];
+            word32 v_size = sizeof(verifier);
+            
+            /* set as 0's so if second init on srv not called SrpTerm is not on
+             * garbage values */
+            XMEMSET(&srv, 0, sizeof(Srp));
+            XMEMSET(&cli, 0, sizeof(Srp));
+            
+            /* generating random salt */
+            
+            r = generate_random_salt(salt, sizeof(salt));
+            
+            /* client knows username and password.   */
+            /* server knows N, g, salt and verifier. */
+            
+            if (!r) r = wc_SrpInit(&cli, SRP_TYPE_SHA, SRP_CLIENT_SIDE);
+            if (!r) r = wc_SrpSetUsername(&cli, username, usernameSz);
+            
+            /* loading N, g and salt in advance to generate the verifier. */
+            
+            if (!r) r = wc_SrpSetParams(&cli, N,    sizeof(N),
+                                        g,    sizeof(g),
+                                        salt, sizeof(salt));
+            if (!r) r = wc_SrpSetPassword(&cli, password, passwordSz);
+            if (!r) r = wc_SrpGetVerifier(&cli, verifier, &v_size);
+            
+            /* client sends username to server */
+            
+            if (!r) r = wc_SrpInit(&srv, SRP_TYPE_SHA, SRP_SERVER_SIDE);
+            if (!r) r = wc_SrpSetUsername(&srv, username, usernameSz);
+            if (!r) r = wc_SrpSetParams(&srv, N,    sizeof(N),
+                                        g,    sizeof(g),
+                                        salt, sizeof(salt));
+            if (!r) r = wc_SrpSetVerifier(&srv, verifier, v_size);
+            if (!r) r = wc_SrpGetPublic(&srv, serverPubKey, &serverPubKeySz);
+            
+            /* server sends N, g, salt and B to client */
+            
+            if (!r) r = wc_SrpGetPublic(&cli, clientPubKey, &clientPubKeySz);
+            if (!r) r = wc_SrpComputeKey(&cli, clientPubKey, clientPubKeySz,
+                                         serverPubKey, serverPubKeySz);
+            if (!r) r = wc_SrpGetProof(&cli, clientProof, &clientProofSz);
+            
+            /* client sends A and M1 to server */
+            
+            if (!r) r = wc_SrpComputeKey(&srv, clientPubKey, clientPubKeySz,
+                                         serverPubKey, serverPubKeySz);
+            if (!r) r = wc_SrpVerifyPeersProof(&srv, clientProof, clientProofSz);
+            if (!r) r = wc_SrpGetProof(&srv, serverProof, &serverProofSz);
+            
+            /* server sends M2 to client */
+            
+            if (!r) r = wc_SrpVerifyPeersProof(&cli, serverProof, serverProofSz);
+            
+            wc_SrpTerm(&cli);
+            wc_SrpTerm(&srv);
+            
+//            return r;
+            assertNotEqual(r, 0, "SRP test failed - code ", &error_count);
+
+        }
+
+        {
+            cout << "HomeKit - SRP test ..." << endl;
 
             uint8_t *s;
             uint16_t s_len;
@@ -112,7 +299,7 @@ int main()
             int compareV = memcmp(&srp_3072_v, v, v_len);
             assertNotEqual(compareV, 0, "byte comparison failed", &error_count);
             
-            cout << "Initialize - compute proof test ..." << endl;
+            cout << "HomeKit - SRP compute proof test ..." << endl;
             
             uint8_t *p;
             uint16_t p_len;

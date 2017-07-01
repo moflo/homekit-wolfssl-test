@@ -113,13 +113,13 @@ void wc_Sha384Free(Sha384* sha)
 
 #else /* else build without using fips */
 
-#include <wolfssl/wolfcrypt/logging.h>
+#include "logging.h"
 
 #ifdef NO_INLINE
 #include <wolfssl/wolfcrypt/misc.h>
 #else
 #define WOLFSSL_MISC_INCLUDED
-#include <wolfcrypt/src/misc.c>
+#include "misc.c"
 #endif
 
 

@@ -153,7 +153,7 @@ extern "C" {
 #include "visibility.h"
     
 #ifdef WOLFSSL_USER_SETTINGS
-#include <user_settings.h>
+#include "user_settings.h"
 #endif
     
     

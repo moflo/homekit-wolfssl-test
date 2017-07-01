@@ -18,6 +18,7 @@
 		915049C91F06D4A000E64078 /* integer.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049C71F06D4A000E64078 /* integer.c */; };
 		915049CD1F06D5F200E64078 /* memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049CB1F06D5F200E64078 /* memory.c */; };
 		915049D01F06D67600E64078 /* logging.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049CE1F06D67600E64078 /* logging.c */; };
+		915049D71F07211600E64078 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049D61F07211600E64078 /* random.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,6 +64,8 @@
 		915049D11F06D7B300E64078 /* mpi_class.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mpi_class.h; sourceTree = "<group>"; };
 		915049D21F06D7F700E64078 /* mpi_superclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mpi_superclass.h; sourceTree = "<group>"; };
 		915049D31F06D83000E64078 /* wolfmath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wolfmath.h; sourceTree = "<group>"; };
+		915049D51F071EFB00E64078 /* user_settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = user_settings.h; sourceTree = "<group>"; };
+		915049D61F07211600E64078 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = random.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +101,21 @@
 			children = (
 				915049AE1F06CDE600E64078 /* HAPController.cpp */,
 				915049AF1F06CDE600E64078 /* HAPController.h */,
+				915049D41F06DF9000E64078 /* WolfSSL */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		915049D41F06DF9000E64078 /* WolfSSL */ = {
+			isa = PBXGroup;
+			children = (
+				915049D51F071EFB00E64078 /* user_settings.h */,
 				915049B11F06CF2E00E64078 /* srp.h */,
 				915049B21F06CF5D00E64078 /* srp.c */,
 				915049B41F06D09600E64078 /* settings.h */,
 				915049CA1F06D57C00E64078 /* visibility.h */,
 				915049B51F06D0EF00E64078 /* random.h */,
+				915049D61F07211600E64078 /* random.c */,
 				915049B61F06D13100E64078 /* error-crypt.h */,
 				915049B71F06D17200E64078 /* misc.h */,
 				915049B81F06D1CE00E64078 /* misc.c */,
@@ -125,7 +138,7 @@
 				915049CE1F06D67600E64078 /* logging.c */,
 				915049CF1F06D67600E64078 /* logging.h */,
 			);
-			path = src;
+			name = WolfSSL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +209,7 @@
 				915049C31F06D37B00E64078 /* sha512.c in Sources */,
 				915049B91F06D1CE00E64078 /* misc.c in Sources */,
 				915049BD1F06D28600E64078 /* wc_port.c in Sources */,
+				915049D71F07211600E64078 /* random.c in Sources */,
 				915049C91F06D4A000E64078 /* integer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +310,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 4W8SEMVXD2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					NO_MAIN_DRIVER,
+					WOLFSSL_USER_SETTINGS,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -327,6 +347,7 @@
 				915049AA1F06CC8300E64078 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

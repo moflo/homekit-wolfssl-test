@@ -12,10 +12,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define WOLFCRYPT_HAVE_SRP 1
-#define WOLFSSL_SHA512 1
+#define WOLFSSL_SHA512
+#define WOLFCRYPT_HAVE_SRP
 
 #include "srp.h"
+
 
 int getChallenge(uint8_t **salt,uint16_t *salt_len, uint8_t **key, uint16_t *key_len);
 
