@@ -36,7 +36,7 @@
 #include "misc.h"
 #else
 #define WOLFSSL_MISC_INCLUDED
-#include "misc.c"
+#include "misc.cpp"
 #endif
 
 /** Computes the session key using the Mask Generation Function 1. */

@@ -40,11 +40,11 @@ extern "C" {
         LEAVE_LOG,
         OTHER_LOG
     };
-    
+
     typedef void (*wolfSSL_Logging_cb)(const int logLevel,
     const char *const logMessage);
     
-    WOLFSSL_API int wolfSSL_SetLoggingCb(wolfSSL_Logging_cb log_function);
+    // WOLFSSL_API int wolfSSL_SetLoggingCb(wolfSSL_Logging_cb log_function);
     
 #if defined(OPENSSL_EXTRA) || defined(DEBUG_WOLFSSL_VERBOSE)
     WOLFSSL_LOCAL int wc_LoggingInit(void);

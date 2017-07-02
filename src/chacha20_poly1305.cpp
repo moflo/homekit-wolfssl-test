@@ -32,7 +32,7 @@
 #include "chacha20_poly1305.h"
 #include "error-crypt.h"
 #include "logging.h"
-#include "chacha.h
+#include "chacha.h"
 #include "poly1305.h"
 
 #ifdef NO_INLINE

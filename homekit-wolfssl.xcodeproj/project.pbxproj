@@ -9,18 +9,18 @@
 /* Begin PBXBuildFile section */
 		915049AD1F06CD5400E64078 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 915049AC1F06CD5400E64078 /* test.cpp */; };
 		915049B01F06CDE600E64078 /* HAPController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 915049AE1F06CDE600E64078 /* HAPController.cpp */; };
-		915049B31F06CF5D00E64078 /* srp.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049B21F06CF5D00E64078 /* srp.c */; };
-		915049B91F06D1CE00E64078 /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049B81F06D1CE00E64078 /* misc.c */; };
-		915049BD1F06D28600E64078 /* wc_port.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049BB1F06D28600E64078 /* wc_port.c */; };
-		915049C01F06D2EA00E64078 /* sha.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049BE1F06D2EA00E64078 /* sha.c */; };
-		915049C31F06D37B00E64078 /* sha512.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049C11F06D37B00E64078 /* sha512.c */; };
-		915049C61F06D40B00E64078 /* sha256.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049C41F06D40B00E64078 /* sha256.c */; };
-		915049C91F06D4A000E64078 /* integer.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049C71F06D4A000E64078 /* integer.c */; };
-		915049CD1F06D5F200E64078 /* memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049CB1F06D5F200E64078 /* memory.c */; };
-		915049D01F06D67600E64078 /* logging.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049CE1F06D67600E64078 /* logging.c */; };
-		915049D71F07211600E64078 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049D61F07211600E64078 /* random.c */; };
-		915049DA1F073FC600E64078 /* chacha20_poly1305.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049D81F073FC600E64078 /* chacha20_poly1305.c */; };
-		915049DD1F07409E00E64078 /* ed25519.c in Sources */ = {isa = PBXBuildFile; fileRef = 915049DB1F07409E00E64078 /* ed25519.c */; };
+		91D5B09D1F08C32D0067C5C5 /* chacha20_poly1305.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0911F08C32D0067C5C5 /* chacha20_poly1305.cpp */; };
+		91D5B09E1F08C32D0067C5C5 /* ed25519.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0921F08C32D0067C5C5 /* ed25519.cpp */; };
+		91D5B09F1F08C32D0067C5C5 /* integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0931F08C32D0067C5C5 /* integer.cpp */; };
+		91D5B0A01F08C32D0067C5C5 /* logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0941F08C32D0067C5C5 /* logging.cpp */; };
+		91D5B0A11F08C32D0067C5C5 /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0951F08C32D0067C5C5 /* memory.cpp */; };
+		91D5B0A21F08C32D0067C5C5 /* misc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0961F08C32D0067C5C5 /* misc.cpp */; };
+		91D5B0A31F08C32D0067C5C5 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0971F08C32D0067C5C5 /* random.cpp */; };
+		91D5B0A41F08C32D0067C5C5 /* sha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0981F08C32D0067C5C5 /* sha.cpp */; };
+		91D5B0A51F08C32D0067C5C5 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0991F08C32D0067C5C5 /* sha256.cpp */; };
+		91D5B0A61F08C32D0067C5C5 /* sha512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B09A1F08C32D0067C5C5 /* sha512.cpp */; };
+		91D5B0A71F08C32D0067C5C5 /* srp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B09B1F08C32D0067C5C5 /* srp.cpp */; };
+		91D5B0A81F08C32D0067C5C5 /* wc_port.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B09C1F08C32D0067C5C5 /* wc_port.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,37 +41,37 @@
 		915049AE1F06CDE600E64078 /* HAPController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HAPController.cpp; sourceTree = "<group>"; };
 		915049AF1F06CDE600E64078 /* HAPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPController.h; sourceTree = "<group>"; };
 		915049B11F06CF2E00E64078 /* srp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = srp.h; sourceTree = "<group>"; };
-		915049B21F06CF5D00E64078 /* srp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = srp.c; sourceTree = "<group>"; };
 		915049B41F06D09600E64078 /* settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = settings.h; sourceTree = "<group>"; };
 		915049B51F06D0EF00E64078 /* random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
 		915049B61F06D13100E64078 /* error-crypt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "error-crypt.h"; sourceTree = "<group>"; };
 		915049B71F06D17200E64078 /* misc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
-		915049B81F06D1CE00E64078 /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
 		915049BA1F06D23700E64078 /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
-		915049BB1F06D28600E64078 /* wc_port.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wc_port.c; sourceTree = "<group>"; };
 		915049BC1F06D28600E64078 /* wc_port.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wc_port.h; sourceTree = "<group>"; };
-		915049BE1F06D2EA00E64078 /* sha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha.c; sourceTree = "<group>"; };
 		915049BF1F06D2EA00E64078 /* sha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha.h; sourceTree = "<group>"; };
-		915049C11F06D37B00E64078 /* sha512.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha512.c; sourceTree = "<group>"; };
 		915049C21F06D37B00E64078 /* sha512.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha512.h; sourceTree = "<group>"; };
-		915049C41F06D40B00E64078 /* sha256.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha256.c; sourceTree = "<group>"; };
 		915049C51F06D40B00E64078 /* sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha256.h; sourceTree = "<group>"; };
-		915049C71F06D4A000E64078 /* integer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = integer.c; sourceTree = "<group>"; };
 		915049C81F06D4A000E64078 /* integer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = integer.h; sourceTree = "<group>"; };
 		915049CA1F06D57C00E64078 /* visibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = visibility.h; sourceTree = "<group>"; };
-		915049CB1F06D5F200E64078 /* memory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = memory.c; sourceTree = "<group>"; };
 		915049CC1F06D5F200E64078 /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
-		915049CE1F06D67600E64078 /* logging.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = logging.c; sourceTree = "<group>"; };
 		915049CF1F06D67600E64078 /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
 		915049D11F06D7B300E64078 /* mpi_class.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mpi_class.h; sourceTree = "<group>"; };
 		915049D21F06D7F700E64078 /* mpi_superclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mpi_superclass.h; sourceTree = "<group>"; };
 		915049D31F06D83000E64078 /* wolfmath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wolfmath.h; sourceTree = "<group>"; };
 		915049D51F071EFB00E64078 /* user_settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = user_settings.h; sourceTree = "<group>"; };
-		915049D61F07211600E64078 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = random.c; sourceTree = "<group>"; };
-		915049D81F073FC600E64078 /* chacha20_poly1305.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chacha20_poly1305.c; sourceTree = "<group>"; };
 		915049D91F073FC600E64078 /* chacha20_poly1305.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chacha20_poly1305.h; sourceTree = "<group>"; };
-		915049DB1F07409E00E64078 /* ed25519.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ed25519.c; sourceTree = "<group>"; };
 		915049DC1F07409E00E64078 /* ed25519.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ed25519.h; sourceTree = "<group>"; };
+		91D5B0911F08C32D0067C5C5 /* chacha20_poly1305.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chacha20_poly1305.cpp; sourceTree = "<group>"; };
+		91D5B0921F08C32D0067C5C5 /* ed25519.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ed25519.cpp; sourceTree = "<group>"; };
+		91D5B0931F08C32D0067C5C5 /* integer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = integer.cpp; sourceTree = "<group>"; };
+		91D5B0941F08C32D0067C5C5 /* logging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logging.cpp; sourceTree = "<group>"; };
+		91D5B0951F08C32D0067C5C5 /* memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory.cpp; sourceTree = "<group>"; };
+		91D5B0961F08C32D0067C5C5 /* misc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = misc.cpp; sourceTree = "<group>"; };
+		91D5B0971F08C32D0067C5C5 /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = random.cpp; sourceTree = "<group>"; };
+		91D5B0981F08C32D0067C5C5 /* sha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sha.cpp; sourceTree = "<group>"; };
+		91D5B0991F08C32D0067C5C5 /* sha256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sha256.cpp; sourceTree = "<group>"; };
+		91D5B09A1F08C32D0067C5C5 /* sha512.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sha512.cpp; sourceTree = "<group>"; };
+		91D5B09B1F08C32D0067C5C5 /* srp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = srp.cpp; sourceTree = "<group>"; };
+		91D5B09C1F08C32D0067C5C5 /* wc_port.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wc_port.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,36 +117,36 @@
 			children = (
 				915049D51F071EFB00E64078 /* user_settings.h */,
 				915049B11F06CF2E00E64078 /* srp.h */,
-				915049B21F06CF5D00E64078 /* srp.c */,
+				91D5B09B1F08C32D0067C5C5 /* srp.cpp */,
 				915049B41F06D09600E64078 /* settings.h */,
 				915049CA1F06D57C00E64078 /* visibility.h */,
 				915049B51F06D0EF00E64078 /* random.h */,
-				915049D61F07211600E64078 /* random.c */,
+				91D5B0971F08C32D0067C5C5 /* random.cpp */,
 				915049B61F06D13100E64078 /* error-crypt.h */,
 				915049B71F06D17200E64078 /* misc.h */,
-				915049B81F06D1CE00E64078 /* misc.c */,
+				91D5B0961F08C32D0067C5C5 /* misc.cpp */,
 				915049BA1F06D23700E64078 /* types.h */,
-				915049BB1F06D28600E64078 /* wc_port.c */,
 				915049BC1F06D28600E64078 /* wc_port.h */,
-				915049BE1F06D2EA00E64078 /* sha.c */,
+				91D5B09C1F08C32D0067C5C5 /* wc_port.cpp */,
 				915049BF1F06D2EA00E64078 /* sha.h */,
-				915049C41F06D40B00E64078 /* sha256.c */,
+				91D5B0981F08C32D0067C5C5 /* sha.cpp */,
 				915049C51F06D40B00E64078 /* sha256.h */,
-				915049C11F06D37B00E64078 /* sha512.c */,
+				91D5B0991F08C32D0067C5C5 /* sha256.cpp */,
 				915049C21F06D37B00E64078 /* sha512.h */,
-				915049C71F06D4A000E64078 /* integer.c */,
+				91D5B09A1F08C32D0067C5C5 /* sha512.cpp */,
 				915049C81F06D4A000E64078 /* integer.h */,
+				91D5B0931F08C32D0067C5C5 /* integer.cpp */,
 				915049D11F06D7B300E64078 /* mpi_class.h */,
 				915049D21F06D7F700E64078 /* mpi_superclass.h */,
 				915049D31F06D83000E64078 /* wolfmath.h */,
-				915049CB1F06D5F200E64078 /* memory.c */,
 				915049CC1F06D5F200E64078 /* memory.h */,
-				915049CE1F06D67600E64078 /* logging.c */,
+				91D5B0951F08C32D0067C5C5 /* memory.cpp */,
 				915049CF1F06D67600E64078 /* logging.h */,
-				915049D81F073FC600E64078 /* chacha20_poly1305.c */,
+				91D5B0941F08C32D0067C5C5 /* logging.cpp */,
 				915049D91F073FC600E64078 /* chacha20_poly1305.h */,
-				915049DB1F07409E00E64078 /* ed25519.c */,
+				91D5B0911F08C32D0067C5C5 /* chacha20_poly1305.cpp */,
 				915049DC1F07409E00E64078 /* ed25519.h */,
+				91D5B0921F08C32D0067C5C5 /* ed25519.cpp */,
 			);
 			name = WolfSSL;
 			sourceTree = "<group>";
@@ -209,20 +209,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				915049C01F06D2EA00E64078 /* sha.c in Sources */,
-				915049B31F06CF5D00E64078 /* srp.c in Sources */,
-				915049CD1F06D5F200E64078 /* memory.c in Sources */,
-				915049C61F06D40B00E64078 /* sha256.c in Sources */,
+				91D5B0A41F08C32D0067C5C5 /* sha.cpp in Sources */,
 				915049AD1F06CD5400E64078 /* test.cpp in Sources */,
-				915049DA1F073FC600E64078 /* chacha20_poly1305.c in Sources */,
+				91D5B0A01F08C32D0067C5C5 /* logging.cpp in Sources */,
+				91D5B0A71F08C32D0067C5C5 /* srp.cpp in Sources */,
+				91D5B09F1F08C32D0067C5C5 /* integer.cpp in Sources */,
 				915049B01F06CDE600E64078 /* HAPController.cpp in Sources */,
-				915049DD1F07409E00E64078 /* ed25519.c in Sources */,
-				915049D01F06D67600E64078 /* logging.c in Sources */,
-				915049C31F06D37B00E64078 /* sha512.c in Sources */,
-				915049B91F06D1CE00E64078 /* misc.c in Sources */,
-				915049BD1F06D28600E64078 /* wc_port.c in Sources */,
-				915049D71F07211600E64078 /* random.c in Sources */,
-				915049C91F06D4A000E64078 /* integer.c in Sources */,
+				91D5B0A81F08C32D0067C5C5 /* wc_port.cpp in Sources */,
+				91D5B09D1F08C32D0067C5C5 /* chacha20_poly1305.cpp in Sources */,
+				91D5B0A51F08C32D0067C5C5 /* sha256.cpp in Sources */,
+				91D5B0A61F08C32D0067C5C5 /* sha512.cpp in Sources */,
+				91D5B0A31F08C32D0067C5C5 /* random.cpp in Sources */,
+				91D5B0A21F08C32D0067C5C5 /* misc.cpp in Sources */,
+				91D5B0A11F08C32D0067C5C5 /* memory.cpp in Sources */,
+				91D5B09E1F08C32D0067C5C5 /* ed25519.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

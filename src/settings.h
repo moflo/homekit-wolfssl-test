@@ -98,8 +98,14 @@ extern "C" {
     /* #define WOLFSSL_EROAD */
     
     /* Uncomment next line if building for IAR EWARM */
-    /* #define WOLFSSL_IAR_ARM */
-    
+#define WOLFSSL_IAR_ARM 
+// #define TIME_OVERRIDES
+// #define WOLFSSL_PARTICLE_ARM
+// Disable some encryption methods
+// #define NO_SHA512
+#define WOLFSSL_SHA512
+#define WOLFCRYPT_HAVE_SRP
+
     /* Uncomment next line if building for Rowley CrossWorks ARM */
     /* #define WOLFSSL_ROWLEY_ARM */
     
@@ -135,7 +141,7 @@ extern "C" {
     
     /* Uncomment next line if building for ARDUINO */
     /* Uncomment both lines if building for ARDUINO on INTEL_GALILEO */
-    /* #define WOLFSSL_ARDUINO */
+// #define WOLFSSL_ARDUINO
     /* #define INTEL_GALILEO */
     
     /* Uncomment next line to enable asynchronous crypto WC_PENDING_E */
@@ -338,7 +344,7 @@ extern "C" {
 #define TIME_OVERRIDES /* must define XTIME and XGMTIME externally */
 #endif
 #define WOLFSSL_USER_IO
-#define HAVE_ECC
+// #define HAVE_ECC
 #define NO_DH
 #define NO_SESSION_CACHE
 #define USE_SLOW_SHA

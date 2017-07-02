@@ -42,7 +42,7 @@
 #endif
 
 #ifdef FREESCALE_LTC_ECC
-#include "port/nxp/ksdk_port.h>
+#include <port/nxp/ksdk_port.h>
 #endif
 
 /* generate an ed25519 key pair.

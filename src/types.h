@@ -196,7 +196,7 @@ defined(__aarch64__) || defined(__sparc64__)
     WOLFSSL_API void* XREALLOC(void *p, size_t n, void* heap, int type);
     WOLFSSL_API void XFREE(void *p, void* heap, int type);
 #elif defined(WOLFSSL_ASYNC_CRYPT) && defined(HAVE_INTEL_QA)
-#include <wolfssl/wolfcrypt/port/intel/quickassist_mem.h>
+// #include <wolfssl/wolfcrypt/port/intel/quickassist_mem.h>
 #undef USE_WOLFSSL_MEMORY
 #ifdef WOLFSSL_DEBUG_MEMORY
 #define XMALLOC(s, h, t)     IntelQaMalloc((s), (h), (t), __func__, __LINE__)
@@ -209,7 +209,7 @@ defined(__aarch64__) || defined(__sparc64__)
 #endif /* WOLFSSL_DEBUG_MEMORY */
 #elif defined(XMALLOC_USER)
     /* prototypes for user heap override functions */
-#include <stddef.h>  /* for size_t */
+// #include <stddef.h>  /* for size_t */
     extern void *XMALLOC(size_t n, void* heap, int type);
     extern void *XREALLOC(void *p, size_t n, void* heap, int type);
     extern void XFREE(void *p, void* heap, int type);
@@ -217,7 +217,7 @@ defined(__aarch64__) || defined(__sparc64__)
     /* override the XMALLOC, XFREE and XREALLOC macros */
 #elif defined(NO_WOLFSSL_MEMORY)
     /* just use plain C stdlib stuff if desired */
-#include <stdlib.h>
+// #include <stdlib.h>
 #define XMALLOC(s, h, t)     ((void)h, (void)t, malloc((s)))
 #define XFREE(p, h, t)       {void* xp = (p); if((xp)) free((xp));}
 #define XREALLOC(p, n, h, t) realloc((p), (n))
@@ -336,7 +336,7 @@ VAR_TYPE VAR_NAME[VAR_ITEMS][VAR_SIZE]
 #endif
     
 #ifndef CTYPE_USER
-#include <ctype.h>
+// #include <ctype.h>
 #if defined(HAVE_ECC) || defined(HAVE_OCSP) || defined(WOLFSSL_KEY_GEN)
 #define XTOUPPER(c)     toupper((c))
 #define XISALPHA(c)     isalpha((c))

@@ -71,6 +71,7 @@ static int loggingEnabled = 0;
 
 #endif /* DEBUG_WOLFSSL */
 
+/* TODO: resolve error with wolfSSL_Logging_cb typedef missing
 
 int wolfSSL_SetLoggingCb(wolfSSL_Logging_cb f)
 {
@@ -88,7 +89,7 @@ int wolfSSL_SetLoggingCb(wolfSSL_Logging_cb f)
     return NOT_COMPILED_IN;
 #endif
 }
-
+*/
 
 int wolfSSL_Debugging_ON(void)
 {

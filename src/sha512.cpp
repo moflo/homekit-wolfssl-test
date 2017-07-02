@@ -119,7 +119,7 @@ void wc_Sha384Free(Sha384* sha)
 #include <wolfssl/wolfcrypt/misc.h>
 #else
 #define WOLFSSL_MISC_INCLUDED
-#include "misc.c"
+#include "misc.cpp"
 #endif
 
 

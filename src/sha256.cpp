@@ -85,7 +85,7 @@ void wc_Sha256Free(Sha256* sha)
 #include <wolfssl/wolfcrypt/misc.h>
 #else
 #define WOLFSSL_MISC_INCLUDED
-#include "misc.c"
+#include "misc.cpp"
 #endif
 
 

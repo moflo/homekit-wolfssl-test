@@ -92,7 +92,7 @@ int wc_RNG_HealthTest(int reseed,
 #include <wolfssl/wolfcrypt/misc.h>
 #else
 #define WOLFSSL_MISC_INCLUDED
-#include "misc.c"
+#include "misc.cpp"
 #endif
 
 #if defined(WOLFSSL_SGX)
@@ -1680,14 +1680,16 @@ defined(WOLFSSL_GENSEED_FORTEST)
 
 #elif defined(NO_DEV_RANDOM)
 
-#error "you need to write an os specific wc_GenerateSeed() here"
+// #error "you need to write an os specific wc_GenerateSeed() here"
 
-/*
+// TODO: create a Particle.io specific random seed
+//  
+
  int wc_GenerateSeed(OS_Seed* os, byte* output, word32 sz)
  {
- return 0;
+ return 0xBEEF;
  }
- */
+
 
 #else
 

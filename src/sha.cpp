@@ -84,7 +84,7 @@ void wc_ShaFree(Sha* sha)
 #include "misc.h"
 #else
 #define WOLFSSL_MISC_INCLUDED
-#include "misc.c"
+#include "misc.cpp"
 #endif
 
 

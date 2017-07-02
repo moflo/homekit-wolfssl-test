@@ -38,7 +38,7 @@
 #include "misc.h"
 #else
 #define WOLFSSL_MISC_INCLUDED
-#include "misc.c"
+#include "misc.cpp"
 #endif
 
 #ifndef NO_BIG_INT
