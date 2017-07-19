@@ -73,9 +73,9 @@ SRPClientInit(Srp *cli)
         0x05
     };
     
-    if (!r) r = wc_SrpSetParams(cli, N,    sizeof(N),
-                                g,    sizeof(g),
+    if (!r) r = wc_SrpSetParams(cli, N, sizeof(N), g, sizeof(g),
                                 salt_3072, sizeof(salt_3072));
+    
     if (!r) r = wc_SrpSetPassword(cli, password, passwordSz);
 
     return r;
@@ -131,3 +131,144 @@ verifySession(uint8_t **serverKeyProof, uint16_t *proof_len, uint8_t *clientPubl
     return r;
     
 }
+
+int
+keyExchangeRequest(uint8_t **signatureOut, uint32_t *sigOut_len, uint8_t *serverKey, uint32_t key_len)
+{
+    /*
+    let encryptionKey = deriveKey(algorithm: .sha512,
+                                  seed: session.server.sessionKey!,
+                                  info: "Pair-Setup-Encrypt-Info".data(using: .utf8),
+                                  salt: "Pair-Setup-Encrypt-Salt".data(using: .utf8),
+                                  count: 32)
+    
+    let plaintext = try? ChaCha20Poly1305.decrypt(cipher: encryptedData,
+                                                        nonce: "PS-Msg05".data(using: .utf8)!,
+                                                        key: encryptionKey)
+     
+     // HomeKit uses the 64-bit nonce option where the first 32 bits of 96-bit nonce are 0.
+     
+     */
+    byte inKey[CHACHA20_POLY1305_AEAD_KEYSIZE];
+    byte nonce[96];
+    byte *aad = NULL;
+    word32 aadSz = 0;
+    byte* inCiphertext;
+    word32 inCiphertextLen;
+    byte inAuthTag[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE];
+    byte* outPlaintext;
+    
+    int r = wc_ChaCha20Poly1305_Decrypt(inKey, nonce,
+                                      aad, aadSz,
+                                      inCiphertext, inCiphertextLen,
+                                      inAuthTag,
+                                      outPlaintext);
+
+    
+     /*
+     
+     let data: PairTagTLV8 = try? decode(plaintext)
+
+     let publicKey = data[.publicKey], let username = data[.username], let signatureIn = data[.signature]
+     
+     let hashIn = deriveKey(algorithm: .sha512,
+     seed: session.server.sessionKey!,
+     info: "Pair-Setup-Controller-Sign-Info".data(using: .utf8),
+     salt: "Pair-Setup-Controller-Sign-Salt".data(using: .utf8),
+     count: 32) +
+     username +
+     publicKey
+     
+     try Ed25519.verify(publicKey: publicKey, message: hashIn, signature: signatureIn)
+      
+    */
+    
+    word32 idx = 0;
+    ed25519_key myKey;
+    byte * pubKey;
+    word32 pubKeyLen = 0;
+    byte * sig;
+    word32 siglen = 0;
+    const byte* msg;
+    word32 msglen;
+    int * result = nullptr;
+    
+    r = wc_ed25519_init(&myKey);
+    
+    if (!r) r = wc_ed25519_import_public(pubKey, pubKeyLen, &myKey);
+    
+    if (!r) r = wc_ed25519_verify_msg(sig, siglen, msg, msglen, result, &myKey);
+    
+    wc_ed25519_free(&myKey);
+    
+    
+
+    
+     /*
+     
+     // At this point, the pairing has completed.
+     device.pairings[username] = publicKey
+     
+     let hashOut = deriveKey(algorithm: .sha512,
+     seed: session.server.sessionKey!,
+     info: "Pair-Setup-Accessory-Sign-Info".data(using: .utf8),
+     salt: "Pair-Setup-Accessory-Sign-Salt".data(using: .utf8),
+     count: 32) +
+     device.identifier.data(using: .utf8)! +
+     device.publicKey
+     
+     let signatureOut = try? Ed25519.sign(privateKey: device.privateKey, message: hashOut) 
+     
+      */
+    
+    byte * in;
+    word32 inSz = 0;
+    byte * out = nullptr;
+    word32 outSz;
+    
+    r = wc_ed25519_init(&myKey);
+    
+    if (!r) r = wc_ed25519_sign_msg(in, inSz, out, &outSz, &myKey);
+    
+    wc_ed25519_free(&myKey);
+
+    
+    
+    
+    
+    /*
+      
+     let resultInner: PairTagTLV8 = [
+     .username: device.identifier.data(using: .utf8)!,
+     .publicKey: device.publicKey,
+     .signature: signatureOut
+     ]
+     
+     let encryptedResultInner = try? ChaCha20Poly1305.encrypt(message: encode(resultInner), nonce: "PS-Msg06".data(using: .utf8)!, key: encryptionKey)
+     
+     */
+    
+    byte* inPlaintext;
+    word32 inPlaintextLen;
+    byte* outCiphertext;
+    byte outAuthTag[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE];
+    
+    r = wc_ChaCha20Poly1305_Encrypt(inKey, nonce,
+                                    aad, aadSz,
+                                    inPlaintext, inPlaintextLen,
+                                    outCiphertext, outAuthTag);
+
+    
+     /*
+     
+     let resultOuter: PairTagTLV8 = [
+     .sequence: Data(bytes: [PairSetupStep.keyExchangeResponse.rawValue]),
+     .encryptedData: encryptedResultInner
+     ]
+
+     */
+    
+    
+    return 0;
+}
+

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		915049AD1F06CD5400E64078 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 915049AC1F06CD5400E64078 /* test.cpp */; };
 		915049B01F06CDE600E64078 /* HAPController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 915049AE1F06CDE600E64078 /* HAPController.cpp */; };
+		91AC7DDF1F1FD87700793B23 /* fe_operations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91AC7DDB1F1FD87700793B23 /* fe_operations.cpp */; };
+		91AC7DE01F1FD87700793B23 /* ge_operations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91AC7DDD1F1FD87700793B23 /* ge_operations.cpp */; };
+		91AC7DE31F1FF43E00793B23 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 91AC7DE11F1FF43E00793B23 /* Makefile */; };
+		91AC7DE41F1FF43E00793B23 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 91AC7DE21F1FF43E00793B23 /* README.md */; };
 		91D5B09D1F08C32D0067C5C5 /* chacha20_poly1305.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0911F08C32D0067C5C5 /* chacha20_poly1305.cpp */; };
 		91D5B09E1F08C32D0067C5C5 /* ed25519.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0921F08C32D0067C5C5 /* ed25519.cpp */; };
 		91D5B09F1F08C32D0067C5C5 /* integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D5B0931F08C32D0067C5C5 /* integer.cpp */; };
@@ -60,6 +64,12 @@
 		915049D51F071EFB00E64078 /* user_settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = user_settings.h; sourceTree = "<group>"; };
 		915049D91F073FC600E64078 /* chacha20_poly1305.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chacha20_poly1305.h; sourceTree = "<group>"; };
 		915049DC1F07409E00E64078 /* ed25519.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ed25519.h; sourceTree = "<group>"; };
+		91AC7DDB1F1FD87700793B23 /* fe_operations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fe_operations.cpp; sourceTree = "<group>"; };
+		91AC7DDC1F1FD87700793B23 /* fe_operations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fe_operations.h; sourceTree = "<group>"; };
+		91AC7DDD1F1FD87700793B23 /* ge_operations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ge_operations.cpp; sourceTree = "<group>"; };
+		91AC7DDE1F1FD87700793B23 /* ge_operations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ge_operations.h; sourceTree = "<group>"; };
+		91AC7DE11F1FF43E00793B23 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		91AC7DE21F1FF43E00793B23 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		91D5B0911F08C32D0067C5C5 /* chacha20_poly1305.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chacha20_poly1305.cpp; sourceTree = "<group>"; };
 		91D5B0921F08C32D0067C5C5 /* ed25519.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ed25519.cpp; sourceTree = "<group>"; };
 		91D5B0931F08C32D0067C5C5 /* integer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = integer.cpp; sourceTree = "<group>"; };
@@ -88,8 +98,10 @@
 		915049981F06CC8200E64078 = {
 			isa = PBXGroup;
 			children = (
+				91AC7DE21F1FF43E00793B23 /* README.md */,
 				915049AB1F06CD5400E64078 /* src */,
 				915049AC1F06CD5400E64078 /* test.cpp */,
+				91AC7DE11F1FF43E00793B23 /* Makefile */,
 				915049A21F06CC8200E64078 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -147,6 +159,10 @@
 				91D5B0911F08C32D0067C5C5 /* chacha20_poly1305.cpp */,
 				915049DC1F07409E00E64078 /* ed25519.h */,
 				91D5B0921F08C32D0067C5C5 /* ed25519.cpp */,
+				91AC7DDB1F1FD87700793B23 /* fe_operations.cpp */,
+				91AC7DDC1F1FD87700793B23 /* fe_operations.h */,
+				91AC7DDD1F1FD87700793B23 /* ge_operations.cpp */,
+				91AC7DDE1F1FD87700793B23 /* ge_operations.h */,
 			);
 			name = WolfSSL;
 			sourceTree = "<group>";
@@ -210,12 +226,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				91D5B0A41F08C32D0067C5C5 /* sha.cpp in Sources */,
+				91AC7DE31F1FF43E00793B23 /* Makefile in Sources */,
+				91AC7DE01F1FD87700793B23 /* ge_operations.cpp in Sources */,
 				915049AD1F06CD5400E64078 /* test.cpp in Sources */,
 				91D5B0A01F08C32D0067C5C5 /* logging.cpp in Sources */,
 				91D5B0A71F08C32D0067C5C5 /* srp.cpp in Sources */,
+				91AC7DE41F1FF43E00793B23 /* README.md in Sources */,
 				91D5B09F1F08C32D0067C5C5 /* integer.cpp in Sources */,
 				915049B01F06CDE600E64078 /* HAPController.cpp in Sources */,
 				91D5B0A81F08C32D0067C5C5 /* wc_port.cpp in Sources */,
+				91AC7DDF1F1FD87700793B23 /* fe_operations.cpp in Sources */,
 				91D5B09D1F08C32D0067C5C5 /* chacha20_poly1305.cpp in Sources */,
 				91D5B0A51F08C32D0067C5C5 /* sha256.cpp in Sources */,
 				91D5B0A61F08C32D0067C5C5 /* sha512.cpp in Sources */,
